@@ -13,7 +13,12 @@
 {% endif %}
 {% set exampleTitle = exampleTitle + " example" %}
 
-{% set exampleId = exampleTitle | kebabCase %}
+{% set exampleId = params.id | default("example-" + params.example) %}
+
+{% if params.titleSuffix %}
+  {% set exampleId = exampleId + '-' + params.titleSuffix %}
+{% endif %}
+
 {% if params.open %}
   {% set exampleId = exampleId + '-open' %}
 {% endif %}
